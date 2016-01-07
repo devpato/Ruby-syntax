@@ -1,0 +1,316 @@
+RUBY SYNTAX
+
+//RUN RUBY PROGRAM 
+ruby hola.rb
+
+//ruby console
+irb
+
+RANDOM NUMBER GENERATOR
+
+ran = Random.new.rand(5)//prints a number between 0 and 5
+*------------------------------*
+//get answer from standar input
+answer = gets.chomp
+//conver string to integer
+answer.to_i
+*-------------------------*
+//how to create a method
+
+def get_name
+
+end
+//hwo to check if a string does not contains numbers
+string.index(/\d/)
+
+//printout your name
+name = get_name()
+puts "Hi #{name}."
+*----------------------*
+//RUBY ARRAYS
+	//Make an array
+		grocery_list = Array.new
+		grocery_list = []
+	//add items to array (4 different way to do so) *I like using push because reminds me to JavaScript
+		Add the string "carrots" to the end of the array:
+		array << "carrots"
+		Add the string "potatoes" to the end of the array:
+
+		array.push("potatoes")
+		Add the string "celery" to the beginning of the array:
+
+		array.unshift("celery") # add to beginning
+		Add the strings "ice cream" and "pie" to the end of the array:
+
+		array += ["ice cream", "pie"]
+		Add the number 1 to the end of the array:
+
+		array << 1
+	//array count elements
+		array.length
+		array.count
+	//Return the number of items in the array matching what you send in:
+		array.count("eggs")  # => 1 //returns one since there's only one egg item in the array
+	//Print out the first item in the array using the first method:
+		puts array.first
+	//Print out the last item in the array, using the negative index and also the "last" method:
+		puts array[-1]
+		puts array.last
+	//The fetch method can be used with an index to return that item in an array:
+		//["milk","bread"]
+		puts array.fetch(1)    # => "bread"
+		If a second argument is provided to the fetch method and there is no corresponding item in the array, the second argument will be used as a default:
+		puts array.fetch(20, "cake")    # => "cake"
+	//insert element into array
+		arary.instert(2,"milk")
+
+	//to see if item included in array
+		array.include?("eggs")  # => true
+
+	//array.at(0) => prints milk	
+	// add at the begining of the array
+		array.unshift("milk")
+	//The slice method takes two arguments and removes and returns items from the array. The first argument is the index in the array, and the second argument is the number of items:
+		first_three_items = array.slice(0, 3)
+//RUBY HASH CREATIONS
+
+	//DELETE ITEM FROM HAST TABLE
+		hash.delete("name");
+	//here's how to create a hash by instantiating a new instance of the Hash class:
+		item = Hash.new
+	//Hashes can also be created by using curly braces:{}
+	//When creating a hash using curly braces, keys and values can also be specified:
+		item = { "item" => "Bread", "quantity" => 1 }
+	//Hash keys can be almost any Ruby type. Here's an example of using symbols as hash keys:
+		item = { :item => "Bread", :quantity => 1 }
+	//Hash keys can also be numbers. If we set the following hash key and value:
+		item[1] = "Grocery Store"
+	//Our hash would look like this:
+		{ :item => "Bread", :quantity => 1, 1 => "Grocery Store" }
+	//Once a hash has been instantiated, it is possible to add new hash keys and values by using the name of the hash, brackets containing the new key, an equals sign, and the new value for 		said key:
+		item["brand"] = "Treehouse Bread Company"
+	//key method
+		hash.keys // returns an array with all the keys
+	//contains key method
+		hash.has_key?("brand")      # => true
+		hash.member?("quantity")    # => true
+		hash.key?("item")           # => true
+	
+	//return value of key 
+		hash['quantity'] // returns 1
+		hash.fetch("quantity")
+	//add item using the strore method
+		hash.store("calories", 100)
+	//HASH values
+		hash.values//retrives an array with all the values in the array
+		hash.has_value?("brand")//return true or false if the value exists
+		//The values_at method takes several arguments and returns the hash values at the specified keys as an array:
+			hash.values_at("quantity", "brand")
+		//That would return:
+			[1, "Treehouse Bread Company"]
+	//HASH METHODS
+		puts " My Hash: #{hash.inspect}"
+		print hash.length
+		//Invert
+			hash.invert //swaps keys for values
+		//shift
+			hash.shift //borra el primer key y value
+		//merge
+			hash.merge({"calories" => 100})
+//BLOCK
+3.times{ puts "Hello world"}
+// it will return 
+//Hello world
+//Hello world
+//Hello world
+
+	def block_method
+	  puts "This is the first line in block_method."
+	  yield
+	  puts "This statement is after the yield keyword."
+	end
+
+	block_method do
+	  puts "This statement is called from the block."
+	end
+****************************************
+def get_name
+  print "Enter your name: "
+  name = gets.chomp
+  yield name
+  name
+end
+
+name = get_name do |your_name|
+  puts "That's a cool name, #{your_name}!"
+end
+	puts "my_name: #{name}" 
+****************************************
+def get_name(prompt, &block)
+  print prompt
+  name = gets.chomp
+  block.call(name) if block_given?
+  name//name is returned
+end
+
+my_name = get_name("Name: ") do |your_name|
+  puts "That's a cool name, #{your_name}!"
+end
+
+puts "my_name: #{my_name}"
+****************************************
+block.call is almost the same as yield. I'm not an expert on ruby,but right now I like using yield better.
+****************************************
+//String#each_char:
+
+	string = "Treehouse"
+	string.each_char{|c| print "#{c}-"} 
+	This prints out:
+
+	"T-r-e-e-h-o-u-s-e"
+	String#each_line:
+
+	haiku = <<-EOF
+	A string with three lines
+	Is considered multi line
+	Ruby code haiku
+	EOF
+
+	haiku.each_line{ |line| puts "* #{line}" }
+	Prints the following:
+
+	* A string with three lines
+	* Is considered multi line
+	* Ruby code haiku
+	Integer#down_to:
+
+	5.downto(3) { |number| print number }
+	Prints out the following:
+	543
+**************************************
+//hash and array methods with blocks
+Code Samples
+
+Given the following array:
+
+array = [1, 2, 3]
+Array#each
+
+array.each { |item| print "-#{item}-" }
+Prints out:
+
+-1--2--3-
+Array#select:
+
+array.select { |item| item > 2 } 
+This returns a new array with the following:
+
+[3]
+
+Array#delete_if
+
+array.delete_if { |item| item == 1 } 
+The array is now:
+
+[2, 3]
+Array#reject
+
+array.reject { |item| item % 3 == 0 }
+The above returns a new array: [1, 2]
+
+Array#count
+
+array.count 
+The above returns 3. But count can also be passed a block:
+
+array.count { |item| item % 3 == 0 }
+The above statement returns 1.
+
+///Hashes
+
+Given the following hash:
+hash = { 'name' => 'Jason', 'location' => 'Treehouse' }
+//Hash#each
+	hash.each do |key, value|
+	  puts "key: #{key} value: #{value}"
+	end
+	//Prints the following:
+	key: name value: Jason
+	key: location value: Treehouse
+//Hash#each_key:
+	hash.each_key{ |key| puts "key: #{key}" }
+	//Prints the following:
+	key: name
+	key: location
+//Hash#each_value:
+	hash.each_value { |val| puts "val: #{val}" }
+	Prints the following:
+	val: Jason
+	val: Treehouse
+	//Hash#keep_if
+	hash.keep_if{ |key, val| key == "name" }
+	The hash is now:
+	{ 'name' => 'Jason' }
+//Hash#reject
+	hash.reject { |key, val| key == "name" }
+	The hash is now:{}
+//Hash#select
+	hash.select { |key, val| key == "name" }
+	Returns a new hash:
+	{ 'name' => 'Jason' }
+//RUBY CLASSES
+class Name
+  def initialize(title)
+    @title = title
+  end
+
+  def title
+    @title
+  end
+
+  def first_name
+    “Jason”
+  end
+
+  def middle_name
+    “”
+  end
+
+  def last_name
+    “Seifer”
+  end
+end
+******************************************************
+class Name
+  attr_reader :first_name, :middle_name, :last_name //SETS THE GETTER IN THE BACKGROUND
+**SEE ALSO attr_writer and attr_accessor => this last one is the same as having the reader and writing just in 1 
+
+  def initialize(title, first_name, middle_name, last_name)
+    @title = title
+    @first_name = first_name
+    @midde_name = middle_name
+    @last_name = last_name
+  end
+end
+********************************************************
+//RUBY STRING FROMATTING
+def to_s
+    "Name: #{name}, Balance: #{sprintf("%0.2f", balance)}"
+  end
+
+  def print_register
+    puts "#{name}'s Bank Account"
+    puts "-" * 40
+
+    puts "Description".ljust(30) + "Amount".rjust(10)
+    @transactions.each do |transaction|
+      puts transaction[:description].ljust(30) + sprintf("%0.2f", transaction[:amount]).rjust(10)
+    end
+
+    puts "-" * 40
+    puts "Balance:".ljust(30) + sprintf("%0.2f", balance).rjust(10)
+    puts "-" * 40
+  end
+ ESTUDY LOOPS
+http://www.tutorialspoint.com/ruby/ruby_loops.htm
+
