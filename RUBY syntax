@@ -313,15 +313,15 @@ def to_s
   end
   //RUBY FOR LOOPS
 
-  //PRINT ALL THE ITEMS IN THE ARRAY
-	animals = ["dog", "cat", "horse", "goat"]
-	for item in animals do
-	  puts "The current item is #{item}."
-	end
-	****************************************
-	for item in 1..3 do //YES! THAT'S THE SYNTAX, CRAZY RIGHT?
-	  puts "The current item is #{item}."
-	end
+	  //PRINT ALL THE ITEMS IN THE ARRAY
+		animals = ["dog", "cat", "horse", "goat"]
+		for item in animals do
+		  puts "The current item is #{item}."
+		end
+		****************************************
+		for item in 1..3 do //YES! THAT'S THE SYNTAX, CRAZY RIGHT?
+		  puts "The current item is #{item}."
+		end
  ESTUDY LOOPS
 http://www.tutorialspoint.com/ruby/ruby_loops.htm
 
